@@ -1,0 +1,32 @@
+Host *
+  ProxyCommand nc -X connect -x proxyinternet.tesa:8080 -P ds01170:08Debian %h %p
+  ServerAliveInterval 10
+  RemoteForward 52698 localhost:52698
+
+Host sulaco
+  Hostname sulaco.ttcloud.net
+  User asainz
+  IdentityFile ~/.ssh/fiware-spain2.pem
+
+Host scuma-pro-core
+  Hostname 150.214.58.177
+  Port 2202
+  User sysadmin
+
+Host scuma-pro-mysql
+  Hostname 150.214.58.177
+  Port 2204
+  User sysadmin
+  LocalForward 3306 localhost:3306
+
+Host scuma-pro-pentaho
+  Hostname 150.214.58.177
+  Port 2206
+  User sysadmin
+  LocalForward 8080 192.168.86.141:8080
+
+Host formacion
+  Hostname 195.235.93.74
+  User sysadmin
+  LocalForward 8080 localhost:8080
+  LocalForward 3306 localhost:3306
